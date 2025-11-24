@@ -1,39 +1,42 @@
-# 🚦 Smart Router Kit
+# Smart Router Kit
 
-**Part 2 of the "Smart Ingest" Series.**
-(Check out Part 1: [Smart Ingest Kit](https://github.com/2dogsandanerd/smart-ingest-kit)
+**Stop sending every query to every data source.** A lightweight, production-ready RAG routing toolkit that uses an LLM to intelligently route user queries to the right tool or data source.
 
-This kit demonstrates how to implement an **"Ingestion Traffic Controller"** for RAG systems.
-Instead of blindly chunking and embedding every document, we use a small LLM pass to route documents to the correct semantic collection and choose the optimal processing strategy.
+*Extracted from a battle-tested, production RAG platform.*
 
-## The Problem
-"Garbage In, Garbage Out."
-If you mix financial tables, Python code, and general marketing text in one vector collection, your retrieval quality suffers.
+---
 
-## The Solution
-A **Pydantic-structured decision step** before ingestion.
+### ✨ This is the second pillar of a bigger vision.
 
-## Usage
+This router is a core component of a much larger, **private-by-design AI platform** I'm building. First, we ingest data intelligently (`smart-ingest-kit`), now we query it intelligently.
 
-1. Install dependencies:
-   ```bash
-   pip install pydantic
-   ```
+If you believe in building efficient, scalable, and private AI systems, follow the journey.
 
-2. Run the demo:
-   ```bash
-   python examples/demo_routing.py
-   ```
+➡️ **[Get early access and join the Private AI Lab here](https://mailchi.mp/38a074f598a3/github_catcher)** ⬅️
 
-## The Core Logic (Pydantic)
+---
 
-```python
-class RoutingDecision(BaseModel):
-    target_collection: str  # e.g. 'finance', 'tech'
-    chunking_strategy: Literal["standard", "table_aware", "vision"]
-    confidence: float
-    reasoning: str
-```
+## 🤔 Why a Smart Router?
 
-## Integration
-In a real setup, you would connect `DocumentRouter` to your Ollama or OpenAI client.
+Standard RAG pipelines are dumb. They treat every user question the same and throw it against all available data. This is slow, expensive (multiple API calls), and often leads to inaccurate answers when data sources conflict.
+
+A smart router acts like an intelligent switchboard. It analyzes the user's intent *before* the search.
+
+## ✅ Features
+
+*   **LLM-as-a-Router:** Uses a small, local LLM to classify the user's query.
+*   **Intent-Based Routing:** Understands whether the user wants to:
+    *   `query` a specific knowledge base (e.g., "What does the legal doc say?").
+    *   `summarize` a document.
+    *   `compare` information across multiple sources.
+*   **Dynamic Tool Selection:** Can route queries to different vector stores, traditional keyword search, or even a SQL database based on the query's nature.
+*   **Reduces Costs & Latency:** Avoids unnecessary API calls and searches, leading to faster and cheaper responses.
+*   **Increases Accuracy:** Prevents context collision by only searching in the most relevant data source.
+
+## 🚀 Quick Start
+
+(Coming soon - I'm working on making this a pip-installable package!)
+
+## 🤝 Contributing
+
+This is a new open-source project and I'm open to any ideas or contributions. Feel free to open an issue or a pull request.
